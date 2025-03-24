@@ -6,14 +6,14 @@ by utilising GNU Make.
 Includes:
 
 * Direct build
-    * Building directly on your used, can be used when you are building
-      app for the same CPU Architecture or non-architecture specific
-      program (e.g. Node.js).
+    * Building directly on your system, can be used if your
+      system environments can produce build result compatible
+      with lambda runtime you chose.
 * Docker build
     * Building inside isolated Docker container. Can be used if you
       would like to achieve better isolation and reproducibility
-      for your build. Or unable to use direct build at all, because
-      you need to build for ARM on x86 computer for example.
+      for your build. Or can't build lambda runtime compatible result
+      directly on your system.
 * Docker build for Docker lambda
     * When you would like to deploy dockerized lambdas.
 * Optional build

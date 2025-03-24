@@ -20,4 +20,8 @@ fi
 aws lambda invoke --function-name ${fn} \
     --payload '{"message": "Hello"}' \
     --cli-binary-format raw-in-base64-out \
-    /dev/stdout
+    temp --no-cli-pager
+
+cat temp
+  
+rm temp
