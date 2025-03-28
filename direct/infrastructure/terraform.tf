@@ -2,6 +2,7 @@ terraform {
   backend "s3" {
     encrypt      = true
     use_lockfile = true
+    key          = "example-terraform-faas-aws-direct.tfstate"
   }
 
   required_providers {
@@ -13,5 +14,5 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region = "eu-west-1"
 }

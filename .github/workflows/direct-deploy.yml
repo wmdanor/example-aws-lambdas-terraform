@@ -33,6 +33,7 @@ jobs:
           - name: Configure AWS Credentials
             uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722
             with:
+                aws-region: eu-west-1
                 role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
         
           - name: Deploy
