@@ -21,7 +21,7 @@ endif
 
 help_sh := ./../help.sh
 
-# Targets
+# Targets 
 
 .DEFAULT_GOAL := help
 
@@ -37,6 +37,11 @@ deploy-$(app_dir):
 .PHONY: deploy-$(infrastructure_dir)
 deploy-$(infrastructure_dir):
 	$(MAKE) -C $(infrastructure_dir) deploy
+
+
+.PHONY: destroy
+destroy:## Destroy
+	$(MAKE) -C $(infrastructure_dir) destroy
 
 
 .PHONY: clean

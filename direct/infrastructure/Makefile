@@ -46,6 +46,7 @@ init: $(tf_backend_config_file) $(dummy_asset_file)
 .PHONY: clean
 clean:## Delete dummy asset and .terraform folder
 	@rm -f $(dummy_asset_file)
+	@rm -f $(tf_backend_config_file)
 	@rm -rf .terraform
 
 
@@ -54,9 +55,9 @@ $(dummy_asset_file):
 
 
 $(tf_backend_config_file):
-	@aws ssm get-parameter --name /terraform/backend/config --with-decryption | \
-		jq -r '.Parameter.Value' | \
-		jq > $(tf_backend_config_file)
+	aws ssm get-parameter --name /terraform/backend/config --with-decryption | \
+		jq -e -r '.Parameter.Value' | \
+		jq -e > $(tf_backend_config_file)
 
 
 .PHONY: help
