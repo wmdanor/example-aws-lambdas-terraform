@@ -1,0 +1,41 @@
+name: Deploy "direct"
+
+permissions:
+    id-token: write
+
+on:
+    workflow_dispatch:
+        inputs:
+            app:
+                description: 'Whether to deploy app'
+                required: true
+                default: 'true'
+                type: choice
+                options:
+                - true
+                - false
+            infrastructure:
+                description: 'Whether to deploy infrastructure'
+                required: true
+                default: 'true'
+                type: choice
+                options:
+                - true
+                - false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+          - name: Configure AWS Credentials
+            uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722
+            with:
+                role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
+        
+          - name: Deploy
+            run: make deploy APP=${{ inputs.app }} INFRA=${{ inputs.infrastructure }}
+            working-directory: direct
+

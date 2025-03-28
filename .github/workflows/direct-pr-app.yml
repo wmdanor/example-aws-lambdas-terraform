@@ -1,0 +1,28 @@
+name: PR App "direct"
+
+on:
+    workflow_dispatch:
+    pull_request:
+        paths: direct/app/*
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        
+          - name: Deploy
+            run: make test
+            working-directory: direct/app
+    
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        
+          - name: Deploy
+            run: make build
+            working-directory: direct/app
+

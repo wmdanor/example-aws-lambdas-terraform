@@ -1,0 +1,9 @@
+completely isolate infra and app deploy
+
+update fn code with cli
+https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html
+
+* aws s3 cp ./asset/... s3://...
+* aws lambda update-function-code ... --s3-bucket ...
+
+* aws lambda update-function-code ... --zip-file ...

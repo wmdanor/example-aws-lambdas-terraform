@@ -1,0 +1,65 @@
+# Export vars
+
+ARGS := ## Args to be additionally passed to Terraform CLI
+
+# Internal vars
+
+tf_backend_config_file := _cfg/backend.json
+tf_var_config_file := _cfg/var.json
+
+tf_plan_file := plan.tfplan
+
+tf_init_args := -backend-config=$(tf_backend_config_file)
+tf_plan_args := -var-file=$(tf_var_config_file)
+
+dummy_asset_file := dummy.zip
+
+help_sh := ./../../help.sh
+
+# Targets
+
+.DEFAULT_GOAL := help
+
+.PHONY: deploy
+deploy: | plan apply ## Plan and apply without confirmation
+
+
+.PHONY: apply
+apply:## Apply previously created plan
+	terraform apply $(tf_plan_file) $(ARGS)
+	@rm -f $(tf_plan_file)
+
+
+.PHONY: destroy
+destroy:## Destroy created infrastructure
+	terraform destroy $(tf_plan_args) -input=false $(ARGS)
+
+
+.PHONY: plan
+plan: init## Plan infrastructure changes and save to a file
+	terraform plan $(tf_plan_args) -out $(tf_plan_file) -input=false $(ARGS)
+
+
+.PHONY: init
+init: $(tf_backend_config_file) $(tf_var_config_file) $(dummy_asset_file)
+	terraform init $(tf_init_args)
+
+
+.PHONY: clean
+clean:## Delete dummy asset and .terraform folder
+	@rm -f $(dummy_asset_file)
+	@rm -rf .terraform
+
+
+$(dummy_asset_file):
+	zip $(dummy_asset_file) .gitignore
+
+
+$(tf_backend_config_file) $(tf_var_config_file):
+	@echo '$@ file must exist'
+	@false
+
+
+.PHONY: help
+help:
+	@$(help_sh) "$(MAKEFILE_LIST)"

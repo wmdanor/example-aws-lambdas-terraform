@@ -1,0 +1,17 @@
+name: PR Infrastructure "direct"
+
+on:
+    workflow_dispatch:
+    pull_request:
+        paths: direct/infrastructure/*
+
+jobs:
+    plan:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        
+          - name: Deploy
+            run: make plan
+            working-directory: direct/infrastructure

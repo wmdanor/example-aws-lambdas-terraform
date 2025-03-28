@@ -23,5 +23,5 @@ aws lambda invoke --function-name ${fn} \
     temp --no-cli-pager
 
 cat temp
-  
+
 rm temp
