@@ -21,5 +21,5 @@ jobs:
                 role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
         
           - name: A
-            run: aws ssm get-parameter --name /terraform/backend/config ---no-pager-cli
+            run: aws ssm get-parameter --name /terraform/backend/config --no-cli-pager
 
