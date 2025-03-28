@@ -51,7 +51,7 @@ clean:## Delete dummy asset and .terraform folder
 
 
 $(dummy_asset_file):
-	zip $(dummy_asset_file) .gitignore
+	@zip $(dummy_asset_file) .gitignore
 
 
 $(tf_backend_config_file):
