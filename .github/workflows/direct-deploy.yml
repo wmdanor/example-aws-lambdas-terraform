@@ -7,7 +7,7 @@ on:
     workflow_dispatch:
         inputs:
             app:
-                description: 'Whether to deploy app'
+                description: 'Deploy app'
                 required: true
                 default: 'true'
                 type: choice
@@ -15,7 +15,7 @@ on:
                 - true
                 - false
             infrastructure:
-                description: 'Whether to deploy infrastructure'
+                description: 'Deploy infrastructure'
                 required: true
                 default: 'true'
                 type: choice
