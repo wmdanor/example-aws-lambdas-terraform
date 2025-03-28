@@ -11,11 +11,11 @@ dirs := $(app_dir) $(infrastructure_dir)
 
 # Infrastructure must come first
 ifeq ($(INFRA),true)
-selected_dirs := $(selected_dirs) $(infrastructure_dir)
+selected_dirs := $(infrastructure_dir)
 endif
 
 ifeq ($(APP),true)
-selected_dirs := $(app_dir)
+selected_dirs := $(selected_dirs) $(app_dir)
 endif
 
 
