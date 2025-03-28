@@ -36,6 +36,9 @@ jobs:
             with:
                 aws-region: eu-west-1
                 role-to-assume: ${{ secrets.AWS_TERRAFORM_ROLE_ARN }}
+
+          - name: Setup Terraform
+            uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd
         
           - name: Deploy
             run: make deploy APP=${{ inputs.app }} INFRA=${{ inputs.infrastructure }}
