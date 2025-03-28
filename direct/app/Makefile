@@ -33,7 +33,9 @@ push: $(push_lambdas:%=push/%)## Upload lambda code
 push/%: LAMBDA = $*
 push/%:
 	@echo "Pushing '$(LAMBDA)' lambda code"
-	aws lambda update-function-code --function-name '$(FUNCTION_NAME_PREFIX)$(LAMBDA)' --zip-file fileb://$(assets_dir)/$(LAMBDA).zip --no-cli-pager
+	aws lambda update-function-code \
+		--function-name '$(FUNCTION_NAME_PREFIX)$(LAMBDA)' \
+		--zip-file fileb://$(assets_dir)/$(LAMBDA).zip --no-cli-pager
 
 
 .PHONY: build

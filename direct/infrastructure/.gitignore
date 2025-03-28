@@ -29,6 +29,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+*.tfplan
+
 *.zip
 
 backend.json
