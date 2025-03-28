@@ -4,7 +4,7 @@ ARGS := ## Args to be additionally passed to Terraform CLI
 
 # Internal vars
 
-tf_backend_config_file := backend.json
+tf_backend_config_file := ./backend.json
 
 tf_plan_file := plan.tfplan
 
