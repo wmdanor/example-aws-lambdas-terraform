@@ -55,9 +55,10 @@ $(dummy_asset_file):
 
 
 $(tf_backend_config_file):
-	@aws ssm get-parameter --name /terraform/backend/config --with-decryption | \
+	aws ssm get-parameter --name /terraform/backend/config --with-decryption | \
 		jq -e -r '.Parameter.Value' | \
 		jq -e > $(tf_backend_config_file)
+	ls
 
 
 .PHONY: help
