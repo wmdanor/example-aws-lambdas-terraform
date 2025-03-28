@@ -12,7 +12,7 @@ jobs:
           - name: Checkout
             uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         
-          - name: Deploy
+          - name: Run tests
             run: make test
             working-directory: direct/app
     
@@ -22,7 +22,7 @@ jobs:
           - name: Checkout
             uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         
-          - name: Deploy
+          - name: Build
             run: make build
             working-directory: direct/app
 
