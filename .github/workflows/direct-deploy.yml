@@ -1,6 +1,7 @@
 name: Deploy "direct"
 
 permissions:
+    contents: read
     id-token: write
 
 on:
